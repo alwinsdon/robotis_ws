@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup ROS 2 Jazzy
+      uses: ros-tooling/setup-ros@v0.7
+      with:
+        required-ros-distributions: jazzy
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          ros-jazzy-hardware-interface \
+          ros-jazzy-controller-manager \
+          ros-jazzy-ros2-controllers \
+          ros-jazzy-ros2-control \
+          ros-jazzy-gz-ros2-control \
+          ros-jazzy-tf-transformations \
+          ros-jazzy-xacro \
+          ros-jazzy-robot-state-publisher \
+          ros-jazzy-joint-state-publisher \
+          ros-jazzy-rviz2 \
+          ros-jazzy-gazebo-* \
+          ros-jazzy-gz-* \
+          ros-jazzy-pal-statistics \
+          libboost-all-dev
+        sudo apt install -y ros-jazzy-moveit-* --no-install-recommends
+        
+    - name: Install vcstool
+      run: |
+        sudo apt install -y python3-vcstool
+        
+    - name: Import source repositories
+      run: |
+        vcs import src < robotis_ws.repos
+        
+    - name: Install dependencies with rosdep
+      run: |
+        sudo rosdep init || true
+        rosdep update
+        rosdep install --from-paths src --ignore-src -r -y
+        
+    - name: Build workspace
+      run: |
+        source /opt/ros/jazzy/setup.bash
+        colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+        
+    - name: Test workspace
+      run: |
+        source /opt/ros/jazzy/setup.bash
+        source install/setup.bash
+        colcon test --ctest-args tests
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          log/
+          build/*/test_results/ 

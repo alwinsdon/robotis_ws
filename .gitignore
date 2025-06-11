@@ -1,0 +1,68 @@
+# ROS 2 Build Artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C++ Build Artifacts
+*.o
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# ROS specific
+devel/
+msg_gen/
+srv_gen/
+msg/generated/
+srv/generated/
+
+# Gazebo
+*.world~
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Local configuration files
+local_*.yaml
+local_*.xml
+
+# Hardware specific
+*.bag
+*.db3 
