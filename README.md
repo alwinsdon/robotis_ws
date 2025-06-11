@@ -87,6 +87,12 @@ ros2 launch open_manipulator_moveit_config moveit_core.launch.py
 
 ## Troubleshooting
 
+### Git/Clone Issues
+1. **Asked for username/password**: Use HTTPS URL: `https://github.com/alwinsdon/robotis_ws.git` (not SSH)
+2. **Clone fails**: Check if you're behind a corporate firewall or proxy
+3. **Permission denied**: Ensure the repository URL is correct and public
+
+### ROS/Build Issues
 1. **USB Permission Issues**: Ensure you're in the `dialout` group
 2. **Package Not Found**: Source the workspace: `source install/setup.bash`
 3. **Hardware Communication**: Check USB connection and motor power
