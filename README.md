@@ -1,6 +1,6 @@
 # ROBOTIS Open Manipulator Workspace
 
-[![CI](https://github.com/USERNAME/robotis_ws/actions/workflows/ci.yml/badge.svg)](https://github.com/USERNAME/robotis_ws/actions/workflows/ci.yml)
+[![CI](https://github.com/alwinsdon/robotis_ws/actions/workflows/ci.yml/badge.svg)](https://github.com/alwinsdon/robotis_ws/actions/workflows/ci.yml)
 [![ROS 2 Jazzy](https://img.shields.io/badge/ROS%202-Jazzy-blue)](https://docs.ros.org/en/jazzy/)
 [![Ubuntu 24.04](https://img.shields.io/badge/Ubuntu-24.04-orange)](https://releases.ubuntu.com/24.04/)
 
@@ -16,11 +16,13 @@ cd robotis_ws
 ./setup_robotis_ws.sh
 ```
 
-### Option 2: From Scratch
+### Option 2: Direct Script Download
 
-For a new PC with Ubuntu 24.04, run the automated setup script:
+For a new PC with Ubuntu 24.04, download and run the setup script directly:
 
 ```bash
+wget https://raw.githubusercontent.com/alwinsdon/robotis_ws/main/setup_robotis_ws.sh
+chmod +x setup_robotis_ws.sh
 ./setup_robotis_ws.sh
 ```
 
@@ -29,7 +31,7 @@ For a new PC with Ubuntu 24.04, run the automated setup script:
 ```bash
 mkdir -p ~/robotis_ws/src
 cd ~/robotis_ws
-wget https://raw.githubusercontent.com/USERNAME/robotis_ws/main/robotis_ws.repos
+wget https://raw.githubusercontent.com/alwinsdon/robotis_ws/main/robotis_ws.repos
 vcs import src < robotis_ws.repos
 # Then follow manual setup instructions
 ```
